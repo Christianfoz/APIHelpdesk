@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("situacao")
+@RequestMapping(path = "situacao")
 public class SituacaoController {
     @Autowired
     private SituacaoRepository _situacaoRepository;
@@ -30,7 +31,7 @@ public class SituacaoController {
         }
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public Situacao buscarSituacao(@PathParam("id") int id){
         try{
             Situacao situacao = _situacaoRepository.findById(id);
@@ -42,7 +43,7 @@ public class SituacaoController {
     }
 
     @PostMapping()
-    public boolean criarSituacao(Situacao s){
+    public boolean criarSituacao(@RequestBody Situacao s){
         try{
             _situacaoRepository.save(s);
             return true;
@@ -53,7 +54,7 @@ public class SituacaoController {
     }
 
     @PutMapping()
-    public boolean editarSituacao(Situacao s){
+    public boolean editarSituacao(@RequestBody Situacao s){
         try{
             _situacaoRepository.save(s);
             return true;

@@ -2,7 +2,16 @@ package com.example.helpdesk.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Ordem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idOrdem;
     private String titulo;
     private String descricao;
@@ -10,18 +19,24 @@ public class Ordem {
     private String imagem;
     private Date dataInicio;
     private Date dataTermino;
+    @ManyToOne
     private Situacao situacao;
-    private Pessoa cliente;
-    private Pessoa tecnico;
+    @ManyToOne
+    private Cliente cliente;
+    @ManyToOne
+    private Tecnico tecnico;
+    @ManyToOne
     private Bloco bloco;
+    @ManyToOne
     private Sala sala;
+    @ManyToOne
     private Piso piso;
 
     public Ordem() {
 
     }
-    
-    public Ordem(Integer idOrdem, String titulo, String descricao, String solucao, String imagem, Date dataInicio, Date dataTermino, Situacao situacao, Pessoa cliente, Pessoa tecnico, Bloco bloco, Sala sala, Piso piso) {
+
+    public Ordem(Integer idOrdem, String titulo, String descricao, String solucao, String imagem, Date dataInicio, Date dataTermino, Situacao situacao, Cliente cliente, Tecnico tecnico, Bloco bloco, Sala sala, Piso piso) {
         this.idOrdem = idOrdem;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -101,19 +116,19 @@ public class Ordem {
         this.situacao = situacao;
     }
 
-    public Pessoa getCliente() {
+    public Cliente getCliente() {
         return this.cliente;
     }
 
-    public void setCliente(Pessoa cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public Pessoa getTecnico() {
+    public Tecnico getTecnico() {
         return this.tecnico;
     }
 
-    public void setTecnico(Pessoa tecnico) {
+    public void setTecnico(Tecnico tecnico) {
         this.tecnico = tecnico;
     }
 
@@ -141,7 +156,7 @@ public class Ordem {
         this.piso = piso;
     }
 
-
-
+    
+    
 
 }

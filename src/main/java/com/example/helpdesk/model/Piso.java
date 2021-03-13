@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,16 +19,19 @@ public class Piso {
     private Integer idPiso;
     @Column(name = "nome_piso",nullable = false,length = 15)
     private String nomePiso;
+    @OneToMany(mappedBy = "piso")
     private List<Ordem> ordens;
+    @ManyToOne
+    private Bloco bloco;
+    @OneToMany(mappedBy = "piso")
+    private List<Sala> salas;   
 
-    public Piso() {
-
-    }
-
-    public Piso(Integer idPiso, String nomePiso, List<Ordem> ordens) {
+    public Piso(Integer idPiso, String nomePiso, List<Ordem> ordens, Bloco bloco, List<Sala> salas) {
         this.idPiso = idPiso;
         this.nomePiso = nomePiso;
         this.ordens = ordens;
+        this.bloco = bloco;
+        this.salas = salas;
     }
 
     public Integer getIdPiso() {
@@ -53,6 +58,24 @@ public class Piso {
         this.ordens = ordens;
     }
 
+    public Bloco getBloco() {
+        return this.bloco;
+    }
+
+    public void setBloco(Bloco bloco) {
+        this.bloco = bloco;
+    }
+
+    public List<Sala> getSalas() {
+        return this.salas;
+    }
+
+    public void setSalas(List<Sala> salas) {
+        this.salas = salas;
+    }
+
+
+    
 
 
 }

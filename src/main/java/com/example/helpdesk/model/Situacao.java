@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +18,7 @@ public class Situacao {
     private Integer idSituacao;
     @Column(name = "nome_situacao", nullable = false, length = 15)
     private String nomeSituacao;
+    @OneToMany(mappedBy = "situacao")
     private List<Ordem> ordens;
 
     public Situacao() {

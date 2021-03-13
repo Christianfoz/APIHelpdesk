@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,16 +19,20 @@ public class Sala {
     private Integer idSala;
     @Column(name = "nome_sala",nullable = false,length = 20)
     private String nomeSala;
+    @OneToMany(mappedBy = "sala")
     private List<Ordem> ordens;
+    @ManyToOne
+    private Piso piso;
 
-    public Sala() {
-
-    }
-
-    public Sala(Integer idSala, String nomeSala, List<Ordem> ordens) {
+    public Sala(Integer idSala, String nomeSala, List<Ordem> ordens, Piso piso) {
         this.idSala = idSala;
         this.nomeSala = nomeSala;
         this.ordens = ordens;
+        this.piso = piso;
+    }
+
+    public Sala() {
+
     }
 
     public Integer getIdSala() {
@@ -53,6 +59,18 @@ public class Sala {
         this.ordens = ordens;
     }
 
+    public Piso getPiso() {
+        return this.piso;
+    }
+
+    public void setPiso(Piso piso) {
+        this.piso = piso;
+    }
+
+
+
+
+    
 
 
 

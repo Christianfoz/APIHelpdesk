@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(name = "piso")
+@RequestMapping(path = "piso")
 public class PisoController {
     @Autowired
     private PisoRepository _pisoRepository;
@@ -30,7 +31,7 @@ public class PisoController {
         }
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public Piso buscarPiso(@PathParam("id") int id){
         try{
             Piso piso = _pisoRepository.findById(id);
@@ -42,7 +43,7 @@ public class PisoController {
     }
 
     @PostMapping()
-    public boolean criarPiso(Piso p){
+    public boolean criarPiso(@RequestBody Piso p){
         try{
             _pisoRepository.save(p);
             return true;
@@ -53,7 +54,7 @@ public class PisoController {
     }
 
     @PutMapping()
-    public boolean editarPiso(Piso p){
+    public boolean editarPiso(@RequestBody Piso p){
         try{
             _pisoRepository.save(p);
             return true;

@@ -1,6 +1,14 @@
 package com.example.helpdesk.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+@Entity
 public class Pessoa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPessoa;
     private String nome;
     private String sobrenome;
@@ -9,13 +17,12 @@ public class Pessoa {
     private String email;
     private String senha;
     private String foto;
-    private TipoPessoa tipoPessoa;
+    @OneToOne(mappedBy = "pessoa")
+    private Cliente cliente;
+    @OneToOne(mappedBy = "pessoa")
+    private Tecnico tecnico;
 
-    public Pessoa() {
-
-    }
-
-    public Pessoa(Integer idPessoa, String nome, String sobrenome, String cpf, String telefone, String email, String senha, String foto, TipoPessoa tipoPessoa) {
+    public Pessoa(Integer idPessoa, String nome, String sobrenome, String cpf, String telefone, String email, String senha, String foto, Cliente cliente, Tecnico tecnico) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -24,7 +31,8 @@ public class Pessoa {
         this.email = email;
         this.senha = senha;
         this.foto = foto;
-        this.tipoPessoa = tipoPessoa;
+        this.cliente = cliente;
+        this.tecnico = tecnico;
     }
 
     public Integer getIdPessoa() {
@@ -91,13 +99,28 @@ public class Pessoa {
         this.foto = foto;
     }
 
-    public TipoPessoa getTipoPessoa() {
-        return this.tipoPessoa;
+    public Cliente getCliente() {
+        return this.cliente;
     }
 
-    public void setTipoPessoa(TipoPessoa tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
+
+    public Tecnico getTecnico() {
+        return this.tecnico;
+    }
+
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+    
+
+
+   
+
+
+   
 
 
 

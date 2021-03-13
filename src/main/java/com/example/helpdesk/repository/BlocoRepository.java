@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BlocoRepository extends CrudRepository<Bloco,Integer>{
-    
+    Bloco findById(int id);
 }

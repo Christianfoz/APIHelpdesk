@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(name = "sala")
+@RequestMapping(path = "sala")
 public class SalaController {
     @Autowired
     public SalaRepository _salaRepository;
@@ -30,7 +31,7 @@ public class SalaController {
         }
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public Sala buscarSala(@PathParam("id") int id){
         try{
             Sala sala = _salaRepository.findById(id);
@@ -42,7 +43,7 @@ public class SalaController {
     }
 
     @PostMapping()
-    public boolean criarSala(Sala s){
+    public boolean criarSala(@RequestBody Sala s){
         try{
             _salaRepository.save(s);
             return true;
@@ -53,7 +54,7 @@ public class SalaController {
     }
 
     @PutMapping()
-    public boolean editarSala(Sala s){
+    public boolean editarSala(@RequestBody Sala s){
         try{
             _salaRepository.save(s);
             return true;
