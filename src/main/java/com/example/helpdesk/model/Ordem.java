@@ -2,41 +2,51 @@ package com.example.helpdesk.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Ordem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idOrdem;
+    @Column(length = 20, nullable = false)
     private String titulo;
+    @Column(length = 120, nullable = false)
     private String descricao;
+    @Column(length = 120, nullable = true)
     private String solucao;
+    @Column(nullable = true)
     private String imagem;
+    @CreationTimestamp
     private Date dataInicio;
     private Date dataTermino;
     @ManyToOne
     private Situacao situacao;
     @ManyToOne
-    private Cliente cliente;
-    @ManyToOne
-    private Tecnico tecnico;
-    @ManyToOne
+    private Pessoa cliente;
+    @ManyToOne(optional = true)
+
+    private Pessoa tecnico;
+    @ManyToOne(optional = false)
     private Bloco bloco;
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Sala sala;
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Piso piso;
 
     public Ordem() {
 
     }
 
-    public Ordem(Integer idOrdem, String titulo, String descricao, String solucao, String imagem, Date dataInicio, Date dataTermino, Situacao situacao, Cliente cliente, Tecnico tecnico, Bloco bloco, Sala sala, Piso piso) {
+    public Ordem(Integer idOrdem, String titulo, String descricao, String solucao, String imagem, Date dataInicio,
+            Date dataTermino, Situacao situacao, Pessoa cliente, Pessoa tecnico, Bloco bloco, Sala sala, Piso piso) {
         this.idOrdem = idOrdem;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -116,19 +126,19 @@ public class Ordem {
         this.situacao = situacao;
     }
 
-    public Cliente getCliente() {
+    public Pessoa getCliente() {
         return this.cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Pessoa cliente) {
         this.cliente = cliente;
     }
 
-    public Tecnico getTecnico() {
+    public Pessoa getTecnico() {
         return this.tecnico;
     }
 
-    public void setTecnico(Tecnico tecnico) {
+    public void setTecnico(Pessoa tecnico) {
         this.tecnico = tecnico;
     }
 
@@ -155,8 +165,5 @@ public class Ordem {
     public void setPiso(Piso piso) {
         this.piso = piso;
     }
-
-    
-    
 
 }

@@ -1,28 +1,46 @@
 package com.example.helpdesk.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 @Entity
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPessoa;
+    @Column(length = 20)
     private String nome;
+    @Column(length = 50)
     private String sobrenome;
+    @Column(length = 14, unique = true)
     private String cpf;
+    @Column(length = 13)
     private String telefone;
+    @Column(length = 30, unique = true)
     private String email;
     private String senha;
+    @Column(nullable = true)
     private String foto;
-    @OneToOne(mappedBy = "pessoa")
-    private Cliente cliente;
-    @OneToOne(mappedBy = "pessoa")
-    private Tecnico tecnico;
+    @OneToMany(mappedBy = "cliente")
+    private List<Ordem> ordemCriada;
+    @OneToMany(mappedBy = "tecnico")
+    private List<Ordem> ordemAceita;
+    @ManyToOne
+    private TipoPessoa tipoPessoa;
 
-    public Pessoa(Integer idPessoa, String nome, String sobrenome, String cpf, String telefone, String email, String senha, String foto, Cliente cliente, Tecnico tecnico) {
+    public Pessoa() {
+
+    }
+
+    public Pessoa(Integer idPessoa, String nome, String sobrenome, String cpf, String telefone, String email,
+            String senha, String foto, List<Ordem> ordemCriada, List<Ordem> ordemAceita, TipoPessoa tipoPessoa) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -31,8 +49,9 @@ public class Pessoa {
         this.email = email;
         this.senha = senha;
         this.foto = foto;
-        this.cliente = cliente;
-        this.tecnico = tecnico;
+        this.ordemCriada = ordemCriada;
+        this.ordemAceita = ordemAceita;
+        this.tipoPessoa = tipoPessoa;
     }
 
     public Integer getIdPessoa() {
@@ -99,30 +118,28 @@ public class Pessoa {
         this.foto = foto;
     }
 
-    public Cliente getCliente() {
-        return this.cliente;
+    public List<Ordem> getOrdemCriada() {
+        return this.ordemCriada;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setOrdemCriada(List<Ordem> ordemCriada) {
+        this.ordemCriada = ordemCriada;
     }
 
-    public Tecnico getTecnico() {
-        return this.tecnico;
+    public List<Ordem> getOrdemAceita() {
+        return this.ordemAceita;
     }
 
-    public void setTecnico(Tecnico tecnico) {
-        this.tecnico = tecnico;
+    public void setOrdemAceita(List<Ordem> ordemAceita) {
+        this.ordemAceita = ordemAceita;
     }
-    
 
+    public TipoPessoa getTipoPessoa() {
+        return this.tipoPessoa;
+    }
 
-   
-
-
-   
-
-
-
+    public void setTipoPessoa(TipoPessoa tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
 
 }
