@@ -21,7 +21,7 @@ public class Pessoa {
     private String sobrenome;
     @Column(length = 14, unique = true)
     private String cpf;
-    @Column(length = 13)
+    @Column(length = 20)
     private String telefone;
     @Column(length = 30, unique = true)
     private String email;

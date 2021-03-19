@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Repository
-public interface PessoaRepository extends CrudRepository<Pessoa,Integer>{
+public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {
     Pessoa findById(int id);
 
     @Query("SELECT p FROM Pessoa p WHERE p.email = :email AND p.senha = :senhaSha")
-    Pessoa logarPessoa(@PathVariable("email") String email, @PathVariable("senha") String senhaSha);
+    Pessoa logarPessoa(@PathVariable("email") String email, @PathVariable("senhaSha") String senhaSha);
 }
