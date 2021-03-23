@@ -10,24 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "bloco")
 public class Bloco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idBloco;
-    @Column(name = "nome_bloco",nullable = false,length = 15)
+    @Column(name = "nome_bloco", nullable = false, length = 15)
     private String nomeBloco;
     @OneToMany(mappedBy = "bloco")
     private List<Ordem> ordens;
     @OneToMany(mappedBy = "bloco")
+    @JsonIgnore
     private List<Piso> pisos;
 
     public Bloco() {
 
     }
 
-    public Bloco(Integer idBloco, String nomeBloco, List<Ordem> ordens,List<Piso> pisos) {
+    public Bloco(Integer idBloco, String nomeBloco, List<Ordem> ordens, List<Piso> pisos) {
         this.idBloco = idBloco;
         this.nomeBloco = nomeBloco;
         this.ordens = ordens;
@@ -65,8 +68,5 @@ public class Bloco {
     public void setPisos(List<Piso> pisos) {
         this.pisos = pisos;
     }
-
-
-
 
 }

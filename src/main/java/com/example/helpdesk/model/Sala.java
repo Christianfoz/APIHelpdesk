@@ -11,15 +11,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "sala")
 public class Sala {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idSala;
-    @Column(name = "nome_sala",nullable = false,length = 20)
+    @Column(name = "nome_sala", nullable = false, length = 20)
     private String nomeSala;
     @OneToMany(mappedBy = "sala")
+    @JsonIgnore
     private List<Ordem> ordens;
     @ManyToOne
     private Piso piso;
@@ -66,12 +69,5 @@ public class Sala {
     public void setPiso(Piso piso) {
         this.piso = piso;
     }
-
-
-
-
-    
-
-
 
 }
