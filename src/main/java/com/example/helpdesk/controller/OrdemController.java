@@ -1,5 +1,28 @@
 package com.example.helpdesk.controller;
 
+import com.example.helpdesk.model.Ordem;
+import com.example.helpdesk.repository.OrdemRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(path = "ordem")
 public class OrdemController {
-    
+    @Autowired
+    private OrdemRepository _ordemRepository;
+
+    @PostMapping()
+    public boolean criarOrdem(@RequestBody Ordem o) {
+        try {
+            _ordemRepository.save(o);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 }
