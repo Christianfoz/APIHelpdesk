@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BlocoRepository extends CrudRepository<Bloco,Integer>{
+public interface BlocoRepository extends CrudRepository<Bloco, Integer> {
     Bloco findById(int id);
 }
