@@ -1,5 +1,7 @@
 package com.example.helpdesk.controller;
 
+import java.util.Date;
+
 import com.example.helpdesk.model.Ordem;
 import com.example.helpdesk.repository.OrdemRepository;
 
@@ -18,6 +20,8 @@ public class OrdemController {
     @PostMapping()
     public boolean criarOrdem(@RequestBody Ordem o) {
         try {
+            Date date = new Date();
+            o.setDataInicio(date);
             _ordemRepository.save(o);
             return true;
         } catch (Exception e) {

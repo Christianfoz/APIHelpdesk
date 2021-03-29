@@ -21,6 +21,7 @@ public class Bloco {
     @Column(name = "nome_bloco", nullable = false, length = 15)
     private String nomeBloco;
     @OneToMany(mappedBy = "bloco")
+    @JsonIgnore
     private List<Ordem> ordens;
     @OneToMany(mappedBy = "bloco")
     @JsonIgnore

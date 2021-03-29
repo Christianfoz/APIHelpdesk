@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "situacao")
 public class Situacao {
@@ -19,6 +21,7 @@ public class Situacao {
     @Column(name = "nome_situacao", nullable = false, length = 15)
     private String nomeSituacao;
     @OneToMany(mappedBy = "situacao")
+    @JsonIgnore
     private List<Ordem> ordens;
 
     public Situacao() {
@@ -54,9 +57,5 @@ public class Situacao {
     public void setOrdens(List<Ordem> ordens) {
         this.ordens = ordens;
     }
-
-
-
-    
 
 }

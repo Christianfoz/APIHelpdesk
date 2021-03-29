@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Pessoa {
     @Id
@@ -29,6 +31,7 @@ public class Pessoa {
     @Column(nullable = true)
     private String foto;
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<Ordem> ordemCriada;
     @OneToMany(mappedBy = "tecnico")
     private List<Ordem> ordemAceita;

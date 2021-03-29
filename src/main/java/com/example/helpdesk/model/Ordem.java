@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 @Entity
 public class Ordem {
     @Id
@@ -24,7 +22,6 @@ public class Ordem {
     private String solucao;
     @Column(nullable = true)
     private String imagem;
-    @CreationTimestamp
     private Date dataInicio;
     private Date dataTermino;
     @ManyToOne
