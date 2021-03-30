@@ -29,21 +29,16 @@ public class Ordem {
     @ManyToOne
     private Pessoa cliente;
     @ManyToOne(optional = true)
-
     private Pessoa tecnico;
     @ManyToOne(optional = false)
-    private Bloco bloco;
-    @ManyToOne(optional = false)
-    private Sala sala;
-    @ManyToOne(optional = false)
-    private Piso piso;
+    private Local local;
 
     public Ordem() {
 
     }
 
     public Ordem(Integer idOrdem, String titulo, String descricao, String solucao, String imagem, Date dataInicio,
-            Date dataTermino, Situacao situacao, Pessoa cliente, Pessoa tecnico, Bloco bloco, Sala sala, Piso piso) {
+            Date dataTermino, Situacao situacao, Pessoa cliente, Pessoa tecnico, Local local) {
         this.idOrdem = idOrdem;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -54,9 +49,7 @@ public class Ordem {
         this.situacao = situacao;
         this.cliente = cliente;
         this.tecnico = tecnico;
-        this.bloco = bloco;
-        this.sala = sala;
-        this.piso = piso;
+        this.local = local;
     }
 
     public Integer getIdOrdem() {
@@ -139,28 +132,12 @@ public class Ordem {
         this.tecnico = tecnico;
     }
 
-    public Bloco getBloco() {
-        return this.bloco;
+    public Local getLocal() {
+        return this.local;
     }
 
-    public void setBloco(Bloco bloco) {
-        this.bloco = bloco;
-    }
-
-    public Sala getSala() {
-        return this.sala;
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
-
-    public Piso getPiso() {
-        return this.piso;
-    }
-
-    public void setPiso(Piso piso) {
-        this.piso = piso;
+    public void setLocal(Local local) {
+        this.local = local;
     }
 
 }

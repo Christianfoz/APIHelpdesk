@@ -4,16 +4,16 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
-import com.example.helpdesk.model.Sala;
+import com.example.helpdesk.model.Local;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SalaRepository extends CrudRepository<Sala, Integer> {
-    Sala findById(int id);
+public interface LocalRepository extends CrudRepository<Local, Integer> {
+    @Query("SELECT l FROM Local l WHERE idLocal = :id")
+    Local buscarPorId(@PathParam("id") int id);
 
-    @Query("SELECT s FROM Sala s WHERE s.piso.idPiso = :id")
-    List<Sala> buscarSalasPorPiso(@PathParam("id") int id);
+    List<Local> findByLocalContainingIgnoreCase(String title);
 }
