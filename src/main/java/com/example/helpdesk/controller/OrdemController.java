@@ -1,11 +1,13 @@
 package com.example.helpdesk.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import com.example.helpdesk.model.Ordem;
 import com.example.helpdesk.repository.OrdemRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,16 @@ public class OrdemController {
         } catch (Exception e) {
             System.out.println(e);
             return false;
+        }
+    }
+
+    @GetMapping
+    public List<Ordem> listarOrdens() {
+        try {
+            List<Ordem> ordens = _ordemRepository.listarOrdens();
+            return ordens;
+        } catch (Exception e) {
+            return null;
         }
     }
 }
