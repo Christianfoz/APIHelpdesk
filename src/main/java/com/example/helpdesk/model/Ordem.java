@@ -14,7 +14,7 @@ public class Ordem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idOrdem;
-    @Column(length = 20, nullable = false)
+    @Column(length = 40, nullable = false)
     private String titulo;
     @Column(length = 120, nullable = false)
     private String descricao;

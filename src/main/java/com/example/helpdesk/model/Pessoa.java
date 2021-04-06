@@ -33,6 +33,7 @@ public class Pessoa {
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private List<Ordem> ordemCriada;
+    @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     private List<Ordem> ordemAceita;
     @ManyToOne

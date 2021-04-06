@@ -57,6 +57,17 @@ public class PessoaController {
         }
     }
 
+    @GetMapping("/verificacaoChamado/{id}")
+    public Integer verificaQuantidadeChamados(@PathParam("id") Integer id) {
+        try {
+            Integer quantidade = _pessoaRepository.verificaQuantidade(id);
+            return quantidade;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
     @PostMapping()
     public boolean criarPessoa(@RequestBody Pessoa pessoa) {
         try {

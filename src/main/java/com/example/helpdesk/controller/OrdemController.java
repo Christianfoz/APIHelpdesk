@@ -9,6 +9,7 @@ import com.example.helpdesk.repository.OrdemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,30 @@ public class OrdemController {
             return ordens;
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @PutMapping("/atualizaParaEmProgresso")
+    public boolean atualizarOrdemParaEmProgresso(@RequestBody Ordem o) {
+        try {
+            _ordemRepository.save(o);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    @PutMapping("/atualizaParaResolvido")
+    public boolean atualizarOrdemParaResolvido(@RequestBody Ordem o) {
+        try {
+            Date date = new Date();
+            o.setDataTermino(date);
+            _ordemRepository.save(o);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
         }
     }
 }
