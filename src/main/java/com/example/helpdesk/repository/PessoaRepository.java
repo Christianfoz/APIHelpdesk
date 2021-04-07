@@ -4,7 +4,6 @@ import com.example.helpdesk.model.Pessoa;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -16,7 +15,7 @@ public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {
     Pessoa logarPessoa(@PathVariable("email") String email, @PathVariable("senhaSha") String senhaSha);
 
     @Query("SELECT COUNT(o.tecnico.idPessoa) FROM Ordem o WHERE o.situacao.idSituacao = 2 AND o.tecnico.idPessoa = :id")
-    Integer verificaQuantidade(@Param("id") Integer id);
+    Integer verificaQuantidade(@PathVariable("id") Integer id);
 }
 
 // "SELECT COUNT(o.tecnico.idPessoa) FROM Ordem o WHERE o.idSituacao == 2 AND

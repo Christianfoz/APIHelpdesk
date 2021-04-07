@@ -13,6 +13,7 @@ import com.example.helpdesk.repository.PessoaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,7 +59,7 @@ public class PessoaController {
     }
 
     @GetMapping("/verificacaoChamado/{id}")
-    public Integer verificaQuantidadeChamados(@PathParam("id") Integer id) {
+    public Integer verificaQuantidadeChamados(@PathVariable("id") Integer id) {
         try {
             Integer quantidade = _pessoaRepository.verificaQuantidade(id);
             return quantidade;
