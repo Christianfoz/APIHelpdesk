@@ -1,6 +1,6 @@
 package com.example.helpdesk.model;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +22,8 @@ public class Ordem {
     private String solucao;
     @Column(nullable = true)
     private String imagem;
-    private Date dataInicio;
-    private Date dataTermino;
+    private ZonedDateTime dataInicio;
+    private ZonedDateTime dataTermino;
     @ManyToOne
     private Situacao situacao;
     @ManyToOne
@@ -37,8 +37,9 @@ public class Ordem {
 
     }
 
-    public Ordem(Integer idOrdem, String titulo, String descricao, String solucao, String imagem, Date dataInicio,
-            Date dataTermino, Situacao situacao, Pessoa cliente, Pessoa tecnico, Local local) {
+    public Ordem(Integer idOrdem, String titulo, String descricao, String solucao, String imagem,
+            ZonedDateTime dataInicio, ZonedDateTime dataTermino, Situacao situacao, Pessoa cliente, Pessoa tecnico,
+            Local local) {
         this.idOrdem = idOrdem;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -92,19 +93,19 @@ public class Ordem {
         this.imagem = imagem;
     }
 
-    public Date getDataInicio() {
+    public ZonedDateTime getDataInicio() {
         return this.dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(ZonedDateTime dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public Date getDataTermino() {
+    public ZonedDateTime getDataTermino() {
         return this.dataTermino;
     }
 
-    public void setDataTermino(Date dataTermino) {
+    public void setDataTermino(ZonedDateTime dataTermino) {
         this.dataTermino = dataTermino;
     }
 
