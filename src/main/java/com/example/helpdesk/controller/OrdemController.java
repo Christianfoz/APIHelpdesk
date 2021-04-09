@@ -26,7 +26,7 @@ public class OrdemController {
     public boolean criarOrdem(@RequestBody Ordem o) {
         try {
             ZonedDateTime date = ZonedDateTime.now(ZoneId.of("America/Sao_Paulo"));
-            o.setDataTermino(date);
+            o.setDataInicio(date);
             _ordemRepository.save(o);
             return true;
         } catch (Exception e) {
