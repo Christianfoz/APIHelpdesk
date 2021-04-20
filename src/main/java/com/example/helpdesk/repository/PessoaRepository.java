@@ -16,6 +16,9 @@ public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {
 
     @Query("SELECT COUNT(o.tecnico.idPessoa) FROM Ordem o WHERE o.situacao.idSituacao = 2 AND o.tecnico.idPessoa = :id")
     Integer verificaQuantidade(@PathVariable("id") Integer id);
+
+    @Query("SELECT p FROM Pessoa p WHERE p.email = :email AND cpf = :cpf")
+    Pessoa buscarPorCpfEmail(@PathVariable("email") String email, @PathVariable("cpf") String cpf);
 }
 
 // "SELECT COUNT(o.tecnico.idPessoa) FROM Ordem o WHERE o.idSituacao == 2 AND

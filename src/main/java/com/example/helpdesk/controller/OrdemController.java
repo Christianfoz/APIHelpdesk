@@ -45,6 +45,22 @@ public class OrdemController {
         }
     }
 
+    @GetMapping("listarPorTitulo/{pesquisa}")
+    public List<Ordem> listarPorTitulo(@PathVariable(required = false, name = "pesquisa") String pesquisa) {
+        try {
+            if (pesquisa == "" || pesquisa == null) {
+                List<Ordem> ordens = _ordemRepository.listarOrdens();
+                return ordens;
+            } else {
+                List<Ordem> ordens = _ordemRepository.findByTituloContainingIgnoreCase(pesquisa);
+                return ordens;
+            }
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     @GetMapping("/listarPorSituacao/{id}")
     public List<Ordem> listarOrdensPorSituacao(@PathVariable("id") int id) {
         try {

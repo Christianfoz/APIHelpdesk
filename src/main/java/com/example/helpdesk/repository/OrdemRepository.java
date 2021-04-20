@@ -17,4 +17,6 @@ public interface OrdemRepository extends CrudRepository<Ordem, Integer> {
 
     @Query("SELECT o FROM Ordem o WHERE o.situacao.idSituacao = :id")
     List<Ordem> listarOrdensPorSituacao(@PathVariable("id") int id);
+
+    List<Ordem> findByTituloContainingIgnoreCase(String pesquisa);
 }

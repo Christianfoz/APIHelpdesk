@@ -51,7 +51,45 @@ public class PessoaController {
             }
             String senhaSha = hexString.toString();
             Pessoa pessoaLogada = _pessoaRepository.logarPessoa(pessoa.getEmail(), senhaSha);
-            return pessoaLogada;
+            if (pessoaLogada == null) {
+                return null;
+            } else {
+                return pessoaLogada;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    @PostMapping("/verificarEmailECpf")
+    public Pessoa verificarEmailECpf(@RequestBody Pessoa pessoa) {
+        try {
+            Pessoa p = _pessoaRepository.buscarPorCpfEmail(pessoa.getEmail(), pessoa.getCpf());
+            if (p == null) {
+                return null;
+            } else {
+                return p;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    @PostMapping("/atualizarSenha")
+    public Pessoa atualizarSenha(@RequestBody Pessoa pessoa) {
+        try {
+            String senha = pessoa.getSenha();
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte messageDigest[] = md.digest(senha.getBytes("UTF-8"));
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                hexString.append(String.format("%02X", 0xFF & b));
+            }
+            pessoa.setSenha(hexString.toString());
+            Pessoa p = _pessoaRepository.save(pessoa);
+            return p;
         } catch (Exception e) {
             System.out.println(e);
             return null;
@@ -80,8 +118,13 @@ public class PessoaController {
                 hexString.append(String.format("%02X", 0xFF & b));
             }
             pessoa.setSenha(hexString.toString());
-            _pessoaRepository.save(pessoa);
-            return true;
+            Pessoa p = new Pessoa();
+            p = _pessoaRepository.save(pessoa);
+            if (p == null) {
+                return false;
+            } else {
+                return true;
+            }
         } catch (Exception e) {
             System.out.println(e);
             return false;
