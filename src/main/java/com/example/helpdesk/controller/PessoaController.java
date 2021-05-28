@@ -62,6 +62,24 @@ public class PessoaController {
         }
     }
 
+    @GetMapping("/validartecnico/{id}")
+    public boolean validarTecnico(@PathVariable("id") Integer id) {
+        try {
+            Pessoa p = _pessoaRepository.buscaPorId(id);
+            if (p == null) {
+                return false;
+            } else {
+                p.setValidado(true);
+                _pessoaRepository.save(p);
+                return true;
+            }
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
     @PostMapping("/verificarEmailECpf")
     public Pessoa verificarEmailECpf(@RequestBody Pessoa pessoa) {
         try {

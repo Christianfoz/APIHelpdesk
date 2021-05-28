@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {
     Pessoa findById(int id);
 
-    @Query("SELECT p FROM Pessoa p WHERE p.email = :email AND p.senha = :senhaSha")
+    @Query("SELECT p FROM Pessoa p WHERE p.email = :email AND p.senha = :senhaSha AND p.validado = 1")
     Pessoa logarPessoa(@PathVariable("email") String email, @PathVariable("senhaSha") String senhaSha);
 
     @Query("SELECT COUNT(o.tecnico.idPessoa) FROM Ordem o WHERE o.situacao.idSituacao = 2 AND o.tecnico.idPessoa = :id")
@@ -19,6 +19,9 @@ public interface PessoaRepository extends CrudRepository<Pessoa, Integer> {
 
     @Query("SELECT p FROM Pessoa p WHERE p.email = :email AND cpf = :cpf")
     Pessoa buscarPorCpfEmail(@PathVariable("email") String email, @PathVariable("cpf") String cpf);
+
+    @Query("SELECT p FROM Pessoa p WHERE p.idPessoa = :id")
+    Pessoa buscaPorId(@PathVariable("id") int id);
 }
 
 // "SELECT COUNT(o.tecnico.idPessoa) FROM Ordem o WHERE o.idSituacao == 2 AND

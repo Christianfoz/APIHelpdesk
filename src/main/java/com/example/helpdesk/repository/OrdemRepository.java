@@ -12,11 +12,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Repository
 public interface OrdemRepository extends CrudRepository<Ordem, Integer> {
 
-    @Query("SELECT o FROM Ordem o ")
+    @Query("SELECT o FROM Ordem o WHERE o.status = true")
     List<Ordem> listarOrdens();
 
-    @Query("SELECT o FROM Ordem o WHERE o.situacao.idSituacao = :id")
+    @Query("SELECT o FROM Ordem o WHERE o.situacao.idSituacao = :id AND o.status = true")
     List<Ordem> listarOrdensPorSituacao(@PathVariable("id") int id);
 
     List<Ordem> findByTituloContainingIgnoreCase(String pesquisa);
+
+    @Query("SELECT o FROM Ordem o WHERE o.cliente.idPessoa = :id AND o.status = true")
+    List<Ordem> listarChamadosCriadosPorPessoa(int id);
+
+    @Query("SELECT o FROM Ordem o WHERE o.tecnico.idPessoa = :id AND o.status = true")
+    List<Ordem> listarChamadosAceitosPorPessoa(int id);
 }

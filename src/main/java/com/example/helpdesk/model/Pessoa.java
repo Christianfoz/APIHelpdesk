@@ -28,6 +28,7 @@ public class Pessoa {
     @Column(length = 30, unique = true)
     private String email;
     private String senha;
+    private boolean validado;
     @Column(nullable = true)
     private String foto;
     @OneToMany(mappedBy = "cliente")
@@ -44,7 +45,8 @@ public class Pessoa {
     }
 
     public Pessoa(Integer idPessoa, String nome, String sobrenome, String cpf, String telefone, String email,
-            String senha, String foto, List<Ordem> ordemCriada, List<Ordem> ordemAceita, TipoPessoa tipoPessoa) {
+            String senha, boolean validado, String foto, List<Ordem> ordemCriada, List<Ordem> ordemAceita,
+            TipoPessoa tipoPessoa) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -52,6 +54,7 @@ public class Pessoa {
         this.telefone = telefone;
         this.email = email;
         this.senha = senha;
+        this.validado = validado;
         this.foto = foto;
         this.ordemCriada = ordemCriada;
         this.ordemAceita = ordemAceita;
@@ -112,6 +115,18 @@ public class Pessoa {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public boolean isValidado() {
+        return this.validado;
+    }
+
+    public boolean getValidado() {
+        return this.validado;
+    }
+
+    public void setValidado(boolean validado) {
+        this.validado = validado;
     }
 
     public String getFoto() {

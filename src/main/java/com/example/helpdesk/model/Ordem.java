@@ -32,6 +32,7 @@ public class Ordem {
     private Pessoa tecnico;
     @ManyToOne(optional = false)
     private Local local;
+    private boolean status;
 
     public Ordem() {
 
@@ -39,7 +40,7 @@ public class Ordem {
 
     public Ordem(Integer idOrdem, String titulo, String descricao, String solucao, String imagem,
             ZonedDateTime dataInicio, ZonedDateTime dataTermino, Situacao situacao, Pessoa cliente, Pessoa tecnico,
-            Local local) {
+            Local local, boolean status) {
         this.idOrdem = idOrdem;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -51,6 +52,7 @@ public class Ordem {
         this.cliente = cliente;
         this.tecnico = tecnico;
         this.local = local;
+        this.status = status;
     }
 
     public Integer getIdOrdem() {
@@ -139,6 +141,18 @@ public class Ordem {
 
     public void setLocal(Local local) {
         this.local = local;
+    }
+
+    public boolean isStatus() {
+        return this.status;
+    }
+
+    public boolean getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
 }
