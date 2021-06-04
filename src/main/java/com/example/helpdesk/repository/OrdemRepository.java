@@ -21,8 +21,8 @@ public interface OrdemRepository extends CrudRepository<Ordem, Integer> {
     List<Ordem> findByTituloContainingIgnoreCase(String pesquisa);
 
     @Query("SELECT o FROM Ordem o WHERE o.cliente.idPessoa = :id AND o.status = true")
-    List<Ordem> listarChamadosCriadosPorPessoa(int id);
+    List<Ordem> listarChamadosCriadosPorPessoa(@PathVariable("id") int id);
 
     @Query("SELECT o FROM Ordem o WHERE o.tecnico.idPessoa = :id AND o.status = true")
-    List<Ordem> listarChamadosAceitosPorPessoa(int id);
+    List<Ordem> listarChamadosAceitosPorPessoa(@PathVariable("id") int id);
 }

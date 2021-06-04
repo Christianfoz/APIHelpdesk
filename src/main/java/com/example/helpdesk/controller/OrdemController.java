@@ -117,6 +117,17 @@ public class OrdemController {
         }
     }
 
+    @PutMapping()
+    public boolean editarChamado(@RequestBody Ordem o) {
+        try {
+            _ordemRepository.save(o);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
     @DeleteMapping("/{id}")
     public boolean deletarChamado(@PathVariable("id") int id) {
         try {
