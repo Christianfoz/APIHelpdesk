@@ -34,6 +34,9 @@ public class Pessoa {
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private List<Ordem> ordemCriada;
+    @OneToMany(mappedBy = "criadorComentario")
+    @JsonIgnore
+    private List<Comentario> comentariosFeitos;
     @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     private List<Ordem> ordemAceita;

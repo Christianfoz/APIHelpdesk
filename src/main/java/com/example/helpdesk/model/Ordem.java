@@ -1,6 +1,7 @@
 package com.example.helpdesk.model;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Ordem {
@@ -32,6 +34,8 @@ public class Ordem {
     private Pessoa tecnico;
     @ManyToOne(optional = false)
     private Local local;
+    @OneToMany(mappedBy = "ordem")
+    private List<Comentario> comentarios;
     private boolean status;
 
     public Ordem() {
